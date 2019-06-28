@@ -1,24 +1,9 @@
-# README
+# USER_AUTH
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+会員制マインクラフトサーバーのユーザー認証を行うシステム
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1.PassMarketにて利用者がメールアドレスを登録
+2.管理者がPassMarketからメールアドレスリストを取得し、当システムに入力する。
+3.当システムが入力されたメールアドレス宛にチケットIDを送付する。
+4.ユーザーがチケットID,メールアドレス,マインクラフトIDを当システムに入力する。
+5.登録が成功するとホワイトリストにMCIDを追加する。
