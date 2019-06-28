@@ -1,0 +1,18 @@
+
+<h2>■生活鯖ユーザー登録／MCID変更登録</h2>
+<br>
+<div class="col-md-12">
+<%= form_tag("/user_auth/create", method: "post",class: "form-group" ) do %>
+    <%= label_tag(:q, "メールアドレス") %>
+    <%= email_field :email, nil, placeholder: "", class:"form-control"%>
+   
+    <%= label_tag(:q, "チケットID") %>
+    <%= text_field_tag :uuid, nil, placeholder: "", class:"form-control"%>
+    
+    <%= label_tag(:q, "Minecraft ID") %>
+    <%= text_field_tag :mcid, nil, placeholder: "", class:"form-control"%>
+    
+    <%= submit_tag("登録!",class: "btn btn-primary") %>
+    <%= submit_tag("確認",class: "btn btn-primary") %>
+<% end %>
+</div>

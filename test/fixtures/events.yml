@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  eventid: 1
+  uuid: MyString
+  flag: 1
+
+two:
+  eventid: 1
+  uuid: MyString
+  flag: 1

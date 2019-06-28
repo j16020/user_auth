@@ -1,0 +1,28 @@
+<div class="col-sm-12">
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
+<h1 class="h2"><%= @adminEvent.title %></h1>
+</div>
+</div>
+
+<div class="col-sm-12">
+<div class="card">
+  <% if @adminEvent.image.attached? %>
+    <%= image_tag(@adminEvent.image,:class=>"card-img-top") %>
+  <%else%>
+    <img src="https://blog-001.west.edge.storage-yahoo.jp/res/blog-1e-27/hekoki506/folder/996220/25/6632925/img_1?1217303617" class="card-img"/>
+  <%end%>
+  <div class="card-body">
+    <%= @adminEvent.content %>
+    人数：<%= @adminEvent.count %>
+    <%= link_to 'Back', events_path %>
+  </div>
+  <div class="card-footer">
+    <small class="text-muted"><%=@adminEvent.created_at%></small>
+  </div>
+</div>
+</div>
+<div class="col-sm-12">
+<%= render 'form', event: @event %>
+</div>

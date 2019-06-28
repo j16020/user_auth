@@ -1,0 +1,55 @@
+
+<div class="col-sm-12">
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
+<h1 class="h2"><%= @admin_event.title %></h1>
+<%= link_to  "download/"+@admin_event.id.to_s ,class:"btn btn-sm btn-outline-secondary" do%>
+  <%= octicon "desktop-download" %>
+<%end%>
+</div>
+</div>
+
+<div class="col-sm-8">
+<div class="card">
+  <% if @admin_event.image.attached? %>
+    <%= image_tag(@admin_event.image,:class=>"card-img-top") %>
+  <%else%>
+    <img src="https://blog-001.west.edge.storage-yahoo.jp/res/blog-1e-27/hekoki506/folder/996220/25/6632925/img_1?1217303617" class="card-img"/>
+  <%end%>
+  <div class="card-body">
+    <%= @admin_event.content %>
+    
+    <%= link_to  edit_admin_event_path(@admin_event) ,class:"btn btn-sm btn-outline-secondary" do%>
+      <%= octicon "pencil" %>Edit
+    <%end%>
+    <%= link_to  admin_events_path,class:"btn btn-sm btn-outline-secondary" do%>
+      <%= octicon "arrow-left" %>Back
+    <%end%>
+  </div>
+  <div class="card-footer">
+    <small class="text-muted"><%=@admin_event.created_at%></small>
+  </div>
+</div>
+</div>
+<div class="col-sm-4">
+<h5>人数：<%=@userCount%>/<%= @admin_event.count %></h5>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Mail</th>
+      <th scope="col">MCID</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @joinUser.each_with_index do |user,i|%>
+    <tr>
+      <td><%=i+1%>
+      <td><%=user.mail%>
+      <td><%=user.mcid%>
+    </tr>
+  <%end%>
+  </tbody>
+  </table>
+</div>

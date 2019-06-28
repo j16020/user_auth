@@ -1,0 +1,51 @@
+
+
+<div class="col-sm-12">
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
+<h1 class="h2">管理者用　イベント一覧</h1>
+<div class="btn-toolbar mb-2 mb-md-0">
+  <div class="btn-group mr-2">
+    <%= link_to  new_admin_event_path,class:"btn btn-primary" do%>
+      <%= octicon "diff-added",:height => 32 %> 新規イベント
+    <%end%>
+  </div>
+  <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+    This week
+  </button>
+</div>
+</div>
+</div>
+
+<% @admin_events.each do |admin_event| %>
+  <div class="col-sm-12">
+  <div class="card mb-3">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <% if admin_event.image.attached? %>
+        <%= image_tag(admin_event.image,:class=>"card-img img-thumbnail") %>
+      <%else%>
+        <img src="https://blog-001.west.edge.storage-yahoo.jp/res/blog-1e-27/hekoki506/folder/996220/25/6632925/img_1?1217303617" class="card-img"/>
+      <%end%>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to admin_event.title, admin_event%></h5>
+        <p class="card-text"><%= admin_event.content.to_plain_text().truncate(40)%></p>
+        <p class="card-text">参加人数:<%=user_count(admin_event.id)%>/<%= admin_event.count%></p>
+        <p class="card-text"><small class="text-muted"><%=admin_event.created_at%></small></p>
+        <%= link_to '表示', admin_event ,class: "btn btn-primary"%>
+        <%= link_to '編集', edit_admin_event_path(admin_event) ,class: "btn btn-primary"%>
+        <%= link_to '削除', admin_event, method: :delete, data: { confirm: '本当に大丈夫ですか?' } ,class: "btn btn-danger"%>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+<%end%>
+
+<br>
+
+

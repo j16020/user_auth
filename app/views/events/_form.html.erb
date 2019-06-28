@@ -1,0 +1,31 @@
+<%= form_with(model: event, local: true) do |form| %>
+  <% if event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :イベントID %>
+    <%= form.number_field :eventid, readonly: true ,class:"form-control"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :チケットID %>
+    <%= form.text_field :uuid,class:"form-control"%>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :flag ,disabled: true%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "登録", class:"btn btn-primary"%>
+  </div>
+<% end %>

@@ -1,0 +1,31 @@
+<div class="col-sm-12">
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+
+<h1 class="h2">イベントリスト</h1>
+</div>
+</div>
+
+<% @admin_events.each do |admin_event| %>
+  <div class="col-sm-12">
+  <div class="card mb-3">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <% if admin_event.image.attached? %>
+        <%= image_tag(admin_event.image,:class=>"card-img img-thumbnail") %>
+      <%else%>
+        <img src="https://blog-001.west.edge.storage-yahoo.jp/res/blog-1e-27/hekoki506/folder/996220/25/6632925/img_1?1217303617" class="card-img"/>
+      <%end%>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to admin_event.title, event_path(admin_event)%></h5>
+        <p class="card-text"><%= admin_event.content.to_plain_text().truncate(40)%></p>
+        <p class="card-text">参加人数:<%=user_count(admin_event.id)%>/<%= admin_event.count%></p>
+        <p class="card-text"><small class="text-muted"><%=admin_event.created_at%></small></p>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+<%end%>

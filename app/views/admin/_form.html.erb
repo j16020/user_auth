@@ -1,0 +1,14 @@
+
+<%= form_for(@user, url: admin_index_path) do |f| %>
+    <%= render 'shared/error_messages' %>
+    <%= f.text_field :name, class: 'form-control' %>
+    <small id="nameHelp" class="form-text text-muted">IDを入力してください。</small>
+    <%= f.email_field :mail, class: 'form-control' %>
+    <small id="emailHelp" class="form-text text-muted">メールアドレスを入力してください。</small>
+    <%= f.password_field :password, class: 'form-control' %>
+    <small id="idHelp" class="form-text text-muted">passwordを入力してください。</small>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+    <small id="idHelp" class="form-text text-muted">passwordを再入力してください。</small>
+
+    <%= submit_tag("送信",class: "btn btn-primary") %>
+  <% end %>

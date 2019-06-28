@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ら民</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    </head>
+  <body>
+  <header>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #272727;">
+  <%= link_to "ら民ユーザー認証", "/" ,class:"navbar-brand"%>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <%= link_to "Home", "/" ,class:"nav-link"%>
+        </li>
+        <li class="nav-item">
+          <%= link_to "イベント", events_path ,class:"nav-link"%>
+        </li>
+ 
+        <li class="nav-item">
+        <%= link_to "MCID登録", user_auth_new_path ,class:"nav-link"%>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Sign up", signup_path ,class:"nav-link"%>
+        </li>
+        <!-- user -->
+        <% if logged_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              管理者用
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "メールアドレス登録", mail_user_new_path ,class:"dropdown-item"%>
+              <%= link_to "ユーザー一覧", mail_user_show_path ,class:"dropdown-item"%>
+              <%= link_to "イベント一覧", admin_events_path ,class:"dropdown-item"%>
+            </div>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Account <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <%= link_to "Profile", current_user_path ,class:"dropdown-item"%>
+              <%= link_to "Settings", edit_admin_path(current_user),class:"dropdown-item"%>
+              <li class="divider"></li>
+              <%= link_to "Log out", logout_path, method: :delete ,class:"dropdown-item"%>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to "管理者", login_path ,class:"nav-link"%></li>
+        <% end %>
+	<li class="nav-item">
+        <%= link_to "ちゃんね・ら＜", "https://ch.nicovideo.jp/rader" ,class:"nav-link"%>
+        </li>
+  <li class="nav-item" >
+            <%= link_to "ら民HP", 'https://ratami.kns-iv.com' ,class:"nav-link" %>
+        </li>
+      </ul>
+    </div>
+  </header>
+  <main role="main">
+    <div class="container">
+    <% flash.each do |message_type, message| %>
+      <%if message_type =="notice"%>
+        <div class="alert alert-info"><%= message %></div>
+      <%elsif message_type == "info" || message_type == "danger" || message_type == "warning" || message_type == "success"%>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <%end%>  
+    <% end %>
+      <div class="row">
+        <%= yield %>
+      </div>
+    </div>
+    </main>
+    <%= debug(params) if Rails.env.development? %>
+    <footer class="footer mt-auto py-3">
+      <div class="container">
+        <span class="text-muted">Copyright © 2017-2019 Ratami All Rights Reserved. Produce by <a href="https://google.com">doraemon</a></span>
+      </div>
+    </footer>
+  </body>
+</html>
